@@ -1,9 +1,3 @@
-React SPA app
-Used with an AWS Lambda REST API service
-
-
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
