@@ -1,28 +1,61 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import AddCustomerForm from './customers/AddCustomerForm'
+import CustomerList from './customers/CustomerList'
+import { getCustomers, addCustomer } from './customers/CustomerService'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props){
+        super(props)
+        this.state = {
+            customers: []
+        }
+        this.handleAddCustomer = this.handleAddCustomer.bind(this);
+    }
+
+    handleAddCustomer(customerState) {
+        addCustomer( {Id: 3, Name: customerState.name })        
+            .then(response => {
+                this.state.customers.push({id: customerState.name, name: customerState.name})
+                this.setState(this.state)
+            })
+            .catch(error => console.error('Error:', error))
+    }
+
+    componentDidMount() {
+        getCustomers()        
+            .then(response => {
+                const customers = response.data.Items.map(c => {
+                    return {
+                        id: c.Id,
+                        name: c.Name
+                    }
+                })
+            
+                const state = Object.assign({}, this.state, {
+                    customers: customers
+                })
+                    
+                this.setState(state) 
+            })
+            .catch(error => console.error('Error:', error))
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                        Customers
+                    </p>
+                    <AddCustomerForm onAddCustomer={this.handleAddCustomer} ></AddCustomerForm>
+                    <CustomerList customers={this.state.customers}></CustomerList>
+                </header>
+            </div>
+        )
+    }
 }
 
 export default App;
