@@ -8,11 +8,19 @@ class CustomerList extends Component {
     }
     render() {
         return (
-            <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {this.props.customers.map(c =>
-                    <Customer key={c.id} name={c.name} />
+                    <Customer id={c.id} name={c.name} />
                 )}
-            </div>
+                </tbody>
+            </table>
         )
     }
 }

@@ -4,6 +4,7 @@ import './App.css'
 import AddCustomerForm from './customers/AddCustomerForm'
 import CustomerList from './customers/CustomerList'
 import { getCustomers, addCustomer } from './customers/CustomerService'
+import uuidv1 from 'uuid/v1'
 
 class App extends Component {
     constructor(props){
@@ -15,7 +16,7 @@ class App extends Component {
     }
 
     handleAddCustomer(customerState) {
-        addCustomer( {Id: 3, Name: customerState.name })        
+        addCustomer( {Id: uuidv1(), Name: customerState.name })        
             .then(response => {
                 this.state.customers.push({id: customerState.name, name: customerState.name})
                 this.setState(this.state)

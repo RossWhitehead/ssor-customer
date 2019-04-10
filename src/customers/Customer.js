@@ -4,9 +4,10 @@ import './customer.css'
 class Customer extends Component {
     render() {
         return (
-            <div className="customer">
-                <span>{this.props.name}</span>
-            </div>
+            <tr>
+                <td>{this.props.id}</td>
+                <td>{this.props.name}</td>
+            </tr>
         )
     }
 }
