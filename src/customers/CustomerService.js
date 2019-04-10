@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const url = process.env.REACT_APP_CUSTOMER_SERVICE_URL
-const requestConfig = {
+const config = {
     headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.REACT_APP_CUSTOMER_SERVICE_API_KEY
@@ -9,12 +9,11 @@ const requestConfig = {
 }
 
 const getCustomers = () => {
-    return axios.get(url, requestConfig)
+    return axios.get(url, config)
 }
 
 const addCustomer = (customer) => {
-    requestConfig.body = customer
-    return axios.post(url, requestConfig)
+    return axios.post(url, customer, config)
 }
 
 export { getCustomers, addCustomer }
