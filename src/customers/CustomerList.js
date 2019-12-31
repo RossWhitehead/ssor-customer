@@ -8,7 +8,7 @@ class CustomerList extends Component {
     }
     render() {
         return (
-            <table>
+            <table class='centered'>
                 <thead>
                     <tr>
                         <th>Id</th>

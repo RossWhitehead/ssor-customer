@@ -23,8 +23,17 @@ class AddCustomerForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="text" name="name" onChange={this.handleChange}/>
-                <input type="submit" value="Add Customer" />
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" name="name" id="name" onChange={this.handleChange}/>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s6">         
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Add customer
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
+                </div>
             </form>
         )
     }
